@@ -124,7 +124,7 @@
         </div>
         <div class="chat-messages" id="messages"></div>
         <div class="input-area">
-            <input type="text" id="userInput" placeholder="输入你的选择...">
+            <input type="text" id="userInput" placeholder="输入你的选择..." onkeydown="if(event.key==='Enter') sendMessage()">
             <button onclick="sendMessage()">发送</button>
         </div>
     </div>
@@ -149,7 +149,7 @@
             document.getElementById('userInput').value = "";
 
             // 调用后端接口
-            fetch('http://localhost:5000/chat', {
+            fetch('http:/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
@@ -170,19 +170,24 @@
         function showUserMessage(text) {
             const messageDiv = document.createElement('div');
             messageDiv.className = "message user-message";
-            messageDiv.innerText = text;
+            const time = new Date().toLocaleTimeString();
+            messageDiv.innerText = `[你 | ${time}]：${text}`;
             messagesDiv.appendChild(messageDiv);
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
         }
+
 
         // 显示机器人消息（区分角色样式）
         function showBotMessage(text, role) {
             const messageDiv = document.createElement('div');
             messageDiv.className = `message bot-message ${role}`;
-            messageDiv.innerText = `${role === 'assistant' ? '助手' : '伙伴'}：${text}`;
+            const time = new Date().toLocaleTimeString();
+            const roleName = role === 'assistant' ? '助手' : '伙伴';
+            messageDiv.innerText = `[${roleName} | ${time}]：${text}`;
             messagesDiv.appendChild(messageDiv);
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
         }
+
 
         // 初始化：助手模式欢迎语
         window.onload = () => {
