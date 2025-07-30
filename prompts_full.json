@@ -1,4 +1,3 @@
-# 模拟或接入真实 LLM 模型生成
 def generate_response(user_input, mode):
     template = prompts_data.get(mode, prompts_data["助手"])
     full_prompt = template.replace("{{input}}", user_input)
