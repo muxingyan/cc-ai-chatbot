@@ -26,13 +26,18 @@ def save_chat_log(user_id, user_input, bot_response):
 # 模拟 LLM 生成（你可以替换为实际 API）
 def generate_response(user_input, mode):
     template = prompts_data.get(mode, prompts_data["助手"])
-    final_prompt = template.replace("{{input}}", user_input)
-    replies = [
-        f"你说得对，{user_input} 是个不错的策略。在沙漠中水源和遮蔽确实至关重要。",
-        f"的确，{user_input} 是沙漠生存的关键一步，我们还可以尝试寻找岩石阴影躲避高温。",
-        f"好主意，{user_input} 能帮助我们保存体力。你还想到其他方法了吗？"
-    ]
-    return random.choice(replies)
+    full_prompt = template.replace("{{input}}", user_input)
+
+    # 根据关键字选择不同回复
+    if "帆布" in user_input:
+        reply = prompts["帆布"][mode]
+    elif "水" in user_input:
+        reply = prompts["水"][mode]
+    else:
+        # 这里会替换占位符 {{input}} 为用户输入
+        reply = prompts["默认"][mode].replace("{{input}}", user_input)
+
+    return reply
 
 @app.route("/")
 def home():
