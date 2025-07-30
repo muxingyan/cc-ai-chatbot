@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>沙漠生存助手</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="sidebar">
+    <div class="title">🧭 沙漠生存任务</div>
+    <p>你被困在沙漠，身边只有以下五样物品：</p>
+    <ul>
+      <li>一块帆布（20×20 英尺）</li>
+      <li>一把刀</li>
+      <li>一张地图</li>
+      <li>一个磁罗盘</li>
+      <li>一瓶水</li>
+    </ul>
+    <p>请按生存优先级排序这些物品，与你的 AI 伙伴 / 助手一起协作完成。</p>
+    <p>⚠️ 排序结果将与专家评分比对</p>
+  </div>
+  <div class="main">
+    <div class="chat-box" id="chat">
+      <div class="msg bot">你好！我是你今天任务的伙伴。准备好后告诉我一声。</div>
+    </div>
+    <div class="input-box">
+      <input type="text" id="user-input" placeholder="请输入...">
+      <button onclick="sendMessage()">发送</button>
+    </div>
+  </div>
+  <script>
+    async function sendMessage() {
+      const input = document.getElementById('user-input');
+      const chat = document.getElementById('chat');
+      const userMsg = input.value.trim();
+      if (!userMsg) return;
+      chat.innerHTML += `<div class='msg user'>${userMsg}</div>`;
+      input.value = '';
+      const response = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: userMsg })
+      });
+      const data = await response.json();
+      chat.innerHTML += `<div class='msg bot'>${data.reply}</div>`;
+      chat.scrollTop = chat.scrollHeight;
+    }
+  </script>
+</body>
+</html>

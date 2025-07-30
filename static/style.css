@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  height: 100vh;
+}
+.sidebar {
+  width: 300px;
+  background-color: #f4f4f4;
+  border-right: 1px solid #ddd;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.chat-box {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background: #fefefe;
+}
+.input-box {
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  display: flex;
+  gap: 10px;
+}
+.input-box input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+}
+.input-box button {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+.msg {
+  margin-bottom: 12px;
+}
+.user {
+  text-align: right;
+  color: #0066cc;
+}
+.bot {
+  text-align: left;
+  color: #333;
+}
+.title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
