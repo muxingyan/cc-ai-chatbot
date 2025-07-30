@@ -1,0 +1,19 @@
+
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background: #f0f0f0;
+}
+#chat-container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: auto;
+}
+#chat-box div {
+  margin: 10px 0;
+}
+.user { color: blue; }
+.assistant { color: green; }
+.partner { color: orange; }
