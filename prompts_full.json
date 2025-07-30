@@ -1,26 +1,14 @@
-def generate_response(user_input, mode):
-    template = prompts_data.get(mode, prompts_data["助手"])
-    full_prompt = template.replace("{{input}}", user_input)
-
-    # 模拟 LLM 调用（后续可以改成实际的 openai/chatglm/openrouter 请求）
-    simulated_responses = {
-        "帆布": {
-            "助手": "用帆布搭建临时庇护所是个不错的选择。记得找些石头压住四角，防止被风吹走。",
-            "伙伴": "哎哟，用帆布搭个窝，你可真聪明~我都想躲进去歇会了！不过记得别漏风哈。"
-        },
-        "水": {
-            "助手": "水源永远是沙漠中最关键的资源，优先寻找地形低洼处，或跟随动物踪迹可能找到水。",
-            "伙伴": "水呀！太对了，我嗓子都冒烟了～快找水，我们得靠它撑下去！"
-        },
-        "默认": {
-            "助手": f"你提到“{user_input}”，这是个不错的点，我们可以据此继续制定求生计划。",
-            "伙伴": f"嘿你说“{user_input}”，听起来挺靠谱的~我们一块动手试试呗？"
-        }
-    }
-
-    if "帆布" in user_input:
-        return simulated_responses["帆布"][mode]
-    elif "水" in user_input:
-        return simulated_responses["水"][mode]
-    else:
-        return simulated_responses["默认"][mode]
+{
+  "帆布": {
+    "助手": "用帆布搭建临时庇护所是个不错的选择。记得找些石头压住四角，防止被风吹走。",
+    "伙伴": "哎哟，用帆布搭个窝，你可真聪明~我都想躲进去歇会了！不过记得别漏风哈。"
+  },
+  "水": {
+    "助手": "水源永远是沙漠中最关键的资源，优先寻找地形低洼处，或跟随动物踪迹可能找到水。",
+    "伙伴": "水呀！太对了，我嗓子都冒烟了～快找水，我们得靠它撑下去！"
+  },
+  "默认": {
+    "助手": "你提到“{{input}}”，这是个不错的点，我们可以据此继续制定求生计划。",
+    "伙伴": "嘿你说“{{input}}”，听起来挺靠谱的~我们一块动手试试呗？"
+  }
+}
