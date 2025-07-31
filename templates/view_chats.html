@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>聊天记录</title>
+</head>
+<body>
+    <h1>聊天记录</h1>
+    <table border="1" cellpadding="5" cellspacing="0">
+        <tr>
+            <th>用户ID</th>
+            <th>角色</th>
+            <th>消息</th>
+            <th>回复</th>
+            <th>时间戳</th>
+        </tr>
+        {% for record in chat_history %}
+        <tr>
+            <td>{{ record.user_id }}</td>
+            <td>{{ record.role }}</td>
+            <td>{{ record.message }}</td>
+            <td>{{ record.response }}</td>
+            <td>{{ record.timestamp }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
